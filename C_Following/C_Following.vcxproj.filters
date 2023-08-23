@@ -30,5 +30,8 @@
     <ClCompile Include="库函数（c_stdlib.h）.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="库函数（c_string.h）.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,0 +1,1 @@
+fopen exampleThis is sent to an unbuffered stream

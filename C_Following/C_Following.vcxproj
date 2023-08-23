@@ -130,6 +130,7 @@
     <ClCompile Include="函数（整体框架）.c" />
     <ClCompile Include="分支语句.c" />
     <ClCompile Include="库函数（c_stdio.h）.c" />
+    <ClCompile Include="库函数（c_stdlib.h）.c" />
     <ClCompile Include="循环语句.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

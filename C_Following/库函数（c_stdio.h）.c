@@ -382,7 +382,7 @@ void rewind ( FILE * stream );
 //	pFile = fopen("alphabet.txt", "w+");
 //	for (n = 'a'; n <= 'c'; n++)
 //	{
-//		fputc(n, pFile);//putc 和 fputc 是等效的，只是 putc 在某些库中可能作为宏实现。参见 putchar 以获取直接写入 stdout 的类似函数。
+//		fputc(n, pFile);//putc 和 fputc 是等效的，只是 putc 在某些库中可能作为宏实现。
 //	}
 //	rewind(pFile);//一旦调用了 rewind() 函数，之后的读写操作就会从文件的开头开始进行，而不是继续在文件当前位置进行。
 //	fread(buffer, 1, 26, pFile);//将26个1字节大小的字符，以文件流的方式存储在buffer（缓冲）内存块中
@@ -764,3 +764,132 @@ int main() {
 
 
 */
+/*
+21>setvbuf
+int setvbuf ( FILE * stream, char * buffer, int mode, size_t size );
+
+更改流缓冲 -> 控制流缓冲和缓冲区大小
+
+指定流的缓冲区。该函数允许指定缓冲区的模式和大小（以字节为单位）。
+如果缓冲区是空指针，则该函数会自动分配缓冲区（使用 size 作为要使用的大小的提示）。
+否则，缓冲区指向的数组可以用作大小字节的缓冲区。
+
+
+参数
+stream
+指向标识打开流的 FILE 对象的指针。
+buffer
+用户分配的缓冲区。长度应至少为字节大小。
+如果设置为 null 指针，该函数会自动分配缓冲区。
+mode
+指定文件缓冲模式。在 <cstdio> 中定义了三个特殊的宏常量（_IOFBF、_IOLBF 和 _IONBF），用作此参数的值：
+		_IOFBF	完全缓冲：在输出时，一旦缓冲区已满（或刷新），就会写入数据。
+						 在“输入”上，当请求输入操作且缓冲区为空时，缓冲区将填充。
+		_IOLBF	线路缓冲：在输出时，当将换行符插入流中或缓冲区已满（或刷新）时，无论先发生什么，都会写入数据。
+						 在“输入”上，当请求输入操作且缓冲区为空时，缓冲区将填充到下一个换行符。
+		_IONBF	无缓冲：不使用缓冲区。每个 I/O 操作都会尽快写入。在这种情况下，将忽略缓冲区和大小参数。
+size
+缓冲区大小（以字节为单位）。
+如果缓冲区参数是空指针，则此值可以确定函数自动为缓冲区分配的大小。
+
+返回值
+如果缓冲区已正确分配给文件，则返回0值。
+否则，返回非0值;这可能是由于模式参数无效或分配缓冲区时出现其他错误。
+
+// setvbuf example
+#include <stdio.h>
+
+int main()
+{
+	FILE* pFile;                        // 声明一个指向 FILE 结构体类型的指针变量 pFile
+
+	pFile = fopen("myfile.txt", "w");   // 以写入模式打开名为 "myfile.txt" 的文件，并将返回的文件指针赋值给 pFile
+
+	setvbuf(pFile, NULL, _IOFBF, 1024); // 设置 pFile 的缓冲区为全缓冲模式，大小为 1024 字节
+
+	// File operations here                // 在这里进行文件操作
+	for (char i = 'a'; i < 'z'; i++)	// 循环从小写字母 'a' 到 'y'
+	{
+		fputc(i, pFile);				// 将当前字母写入文件
+	}
+
+	fclose(pFile);                      // 关闭文件
+
+	return 0;                           // 返回整数值 0，表示程序正常结束
+}
+//在此示例中，将创建一个名为 myfile.txt 的文件，
+//并为关联的流请求 1024 字节的完整缓冲区，
+//因此每次填充 1024 字节缓冲区时，才应将输出到此流的数据写入该文件。
+
+*/
+
+
+/*
+22>fputc
+int fputc ( int character, FILE * stream );
+将字符写入流(Write character to stream)
+
+将字符写入流并前进位置指示器。
+字符写在流的内部位置指示器指示的位置，然后自动前进一。
+
+返回值
+成功后，将返回所写字符。
+如果发生写入错误，则返回 EOF 并设置错误指示器（ferror）。
+
+// fputc example: alphabet writer
+#include <stdio.h>
+
+int main()
+{
+	FILE* pFile;            // 声明一个指向 FILE 结构体类型的指针变量 pFile
+	char c;                 // 声明一个字符变量 c
+
+	pFile = fopen("alphabet.txt", "w");   // 以写入模式打开名为 "alphabet.txt" 的文件，并将返回的文件指针赋值给 pFile
+	if (pFile != NULL) {                  // 检查文件是否成功打开
+
+		for (c = 'A'; c <= 'Z'; c++)       // 循环从大写字母 'A' 到 'Z'
+			fputc(c, pFile);               // 将当前字母写入文件
+
+		fclose(pFile);                     // 关闭文件
+	}
+	return 0;                             // 返回整数值 0，表示程序正常结束
+}
+
+*/
+
+
+
+/*
+23>fputs
+int fputs ( const char * str, FILE * stream );
+将字符串写入流(Write string to stream)
+将 str 指向流的 C 字符串写入流。
+
+该函数从指定的地址 （str） 开始复制，直到到达终止空字符 （'\0'）。
+此终止空字符不会复制到流中。
+请注意，fput 与 put 的不同之处不仅在于可以指定目标流，
+而且 fput 不会写入其他字符，而 put 会自动在末尾附加换行符。
+
+
+返回值
+成功时，将返回非负值。
+出错时，该函数返回 EOF 并设置错误指示器（ferror）。
+
+// fputs example
+#include <stdio.h>
+
+int main()
+{
+	FILE* pFile;                    // 声明一个指向 FILE 结构体类型的指针变量 pFile
+	char sentence[256];             // 声明一个长度为 256 的字符数组 sentence
+
+	printf("Enter sentence to append: ");   // 提示用户输入一句话
+	fgets(sentence, 256, stdin);              // 获取用户输入的内容并存储在 sentence 数组中
+	pFile = fopen("mylog.txt", "a");          // 以追加模式打开名为 "mylog.txt" 的文件，并将返回的文件指针赋值给 pFile
+	fputs(sentence, pFile);                   // 将 sentence 中的内容写入文件
+	fclose(pFile);                            // 关闭文件
+	return 0;                                 // 返回整数值 0，表示程序正常结束
+}
+
+*/
+

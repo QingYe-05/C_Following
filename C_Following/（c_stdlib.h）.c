@@ -16,8 +16,8 @@ status  - 状态代码
 
 
 // exit exampl
-#include <stdio.h>      // printf, fopen 
-#include <stdlib.h>     // exit, EXIT_FAILURE 
+#include <stdio.h>      // printf, fopen
+#include <stdlib.h>     // exit, EXIT_FAILURE
 
 int main()
 {
@@ -189,23 +189,30 @@ double atof (const char* str);
 */
 
 // atof example: sine calculator -正弦计算器
-#include <stdio.h>      // printf, fgets 
+#include <stdio.h>      // printf, fgets
 #include <stdlib.h>     // atof 
 #include <math.h>       // sin 
 
 int main()
 {
-    double n, m;
-    double pi = 3.1415926535;
-    char buffer[256];
-    printf("Enter degrees: ");
-    fgets(buffer, 256, stdin);
-    n = atof(buffer);
-    m = sin(n * pi / 180);
-    printf("The sine of %f degrees is %f\n", n, m);
-    return 0;
-}
+    double n, m;                  // 声明两个类型为 double 的变量 n 和 m
+    double pi = 3.1415926535;     // 声明一个 double 类型的变量 pi，并赋值为圆周率的近似值
+    char buffer[256];             // 声明一个长度为 256 的字符数组 buffer
 
+    printf("Enter degrees: ");    // 提示用户输入角度值
+    fgets(buffer, 256, stdin);    // 从标准输入（键盘）获取用户输入并存储在 buffer 数组中
+    n = atof(buffer);             // 使用 atof 函数将 buffer 中的字符串转换为 double 类型的数值，并赋值给 n
+    m = sin(n * pi / 180);        // 计算角度 n 对应的正弦值，结果存在变量 m 中
+    printf("The sine of %f degrees is %f\n", n, m);   // 输出结果，包括角度值和对应的正弦值
+    return 0;                     // 返回整数值 0，表示程序正常结束
+}
 
 //Enter degrees : 45
 //The sine of 45.000000 degrees is 0.707101
+
+
+/*
+
+
+
+*/

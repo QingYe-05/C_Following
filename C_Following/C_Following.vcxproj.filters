@@ -36,5 +36,8 @@
     <ClCompile Include="自定义函数.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="库函数（c_math.h）.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

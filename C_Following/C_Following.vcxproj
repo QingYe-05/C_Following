@@ -129,12 +129,12 @@
   <ItemGroup>
     <ClCompile Include="函数（整体框架）.c" />
     <ClCompile Include="分支语句.c" />
-    <ClCompile Include="库函数（c_math.h）.c" />
-    <ClCompile Include="库函数（c_stdio.h）.c" />
-    <ClCompile Include="库函数（c_string.h）.c" />
+    <ClCompile Include="（c_math.h）.c" />
+    <ClCompile Include="（c_stdio.h）.c" />
+    <ClCompile Include="（c_string.h）.c" />
     <ClCompile Include="循环语句.c" />
     <ClCompile Include="自定义函数.c" />
-    <ClCompile Include="库函数（c_stdlib.h）.c" />
+    <ClCompile Include="（c_stdlib.h）.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

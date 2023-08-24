@@ -186,12 +186,11 @@ double atof (const char* str);
 返回值
 成功后，该函数将转换后的浮点数作为值返回。
 如果无法执行有效的转换，则该函数返回0（）。
-*/
 
 // atof example: sine calculator -正弦计算器
 #include <stdio.h>      // printf, fgets
-#include <stdlib.h>     // atof 
-#include <math.h>       // sin 
+#include <stdlib.h>     // atof
+#include <math.h>       // sin
 
 int main()
 {
@@ -211,8 +210,30 @@ int main()
 //The sine of 45.000000 degrees is 0.707101
 
 
+*/
+
 /*
 
+*/
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
 */

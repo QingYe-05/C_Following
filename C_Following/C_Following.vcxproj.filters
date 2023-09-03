@@ -42,5 +42,8 @@
     <ClCompile Include="（c_time.h）.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="指针（初阶）.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

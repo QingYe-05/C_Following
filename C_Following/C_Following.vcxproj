@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="函数（整体框架）.c" />
     <ClCompile Include="分支语句.c" />
+    <ClCompile Include="指针（初阶）.c" />
     <ClCompile Include="（c_math.h）.c" />
     <ClCompile Include="（c_stdio.h）.c" />
     <ClCompile Include="（c_string.h）.c" />

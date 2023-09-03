@@ -874,4 +874,35 @@ int main()
 }
 */
 
+/*
+23>free
+void free (void* ptr);
+释放内存块
+如果为 null 指针，则该函数不执行任何操作。
+
+malloc(100*sizeof(int)) 分配了一块大小为 100 个整型数的内存，并将该内存的首地址保存在 buffer1 中。
+
+calloc(100,sizeof(int)) 分配了一块大小为 100 个整型数的内存，并初始化所有的元素为 0，并将该内存的首地址保存在 buffer2 中。
+
+realloc(buffer2,500*sizeof(int)) 将之前分配的 buffer2 内存块大小扩展到了 500 个整型数，并将其指针返回给 buffer3。
+需要注意的是，如果扩展成功，则 buffer2 的指针值会被释放，不能再使用。
+
+
+
+// free example
+#include <stdlib.h>     // malloc, calloc, realloc, free
+
+int main()
+{
+	int* buffer1, * buffer2, * buffer3;
+	buffer1 = (int*)malloc(100 * sizeof(int));
+	buffer2 = (int*)calloc(100, sizeof(int));
+	buffer3 = (int*)realloc(buffer2, 500 * sizeof(int));
+	free(buffer1);
+	free(buffer3);
+	return 0;
+}
+
+*/
+
 
